@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TestPlan type="OpenTap.TestPlan" Locked="false">
+  <Steps>
+    <TestStep type="OpenTap.Plugins.BasicSteps.LogStep" Id="edc08a94-c946-4695-8ef2-c31be76bf782">
+      <LogMessage>Message from LogOutput1.</LogMessage>
+      <Severity>Debug</Severity>
+      <Enabled>true</Enabled>
+      <Name>LogOutput1</Name>
+      <ChildTestSteps />
+    </TestStep>
+    <TestStep type="OpenTap.Plugins.BasicSteps.LogStep" Id="6545ab2e-106f-4f14-b2cc-2732a7d3c81c">
+      <LogMessage>Message from LogOutput2.</LogMessage>
+      <Severity>Debug</Severity>
+      <Enabled>true</Enabled>
+      <Name>LogOutput2</Name>
+      <ChildTestSteps />
+    </TestStep>
+  </Steps>
+</TestPlan>
