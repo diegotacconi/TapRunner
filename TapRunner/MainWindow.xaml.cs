@@ -45,7 +45,7 @@ namespace TapRunner
             InitializeComponent();
 
             // Default values
-            PlanPath = @"..\..\..\..\TapPlans\Example1.TapPlan";
+            PlanPath = @"..\..\..\TapPlans\Example1.TapPlan";
             TestPlanTextBox.DataContext = this;
 
             PlanVerdict = Verdict.Inconclusive;
