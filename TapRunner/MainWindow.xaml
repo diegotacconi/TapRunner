@@ -105,7 +105,19 @@
                         <TextBlock Text="Log" FontSize="14"/>
                     </TabItem.Header>
                     <Grid>
-                        <ListView x:Name="LogListView" FontFamily="Consolas" FontWeight="Normal" BorderThickness="0">
+                        <ListView x:Name="LogListView" FontFamily="Consolas" FontWeight="Normal" BorderThickness="0" SelectionMode="Extended">
+
+                            <!-- This is required to handle ALT+C and CTRL+C -->
+                            <ListView.CommandBindings>
+                                <CommandBinding Command="Copy" Executed="CopyLogPanel" />
+                                <CommandBinding Command="Cut" Executed="ClearLogPanel" />
+                            </ListView.CommandBindings>
+
+                            <!-- This is required to handle ALT+C and CTRL+C -->
+                            <ListView.InputBindings>
+                                <KeyBinding Key="C" Modifiers="Control" Command="Copy" />
+                                <KeyBinding Key="C" Modifiers="Alt" Command="Cut" />
+                            </ListView.InputBindings>
 
                             <ListView.Resources>
                                 <Style TargetType="{x:Type GridViewColumnHeader}">
@@ -126,8 +138,8 @@
 
                             <ListView.ContextMenu>
                                 <ContextMenu x:Name = "LogListViewCommandMenu">
-                                    <MenuItem Header="Clear Log Panel"/>
-                                    <MenuItem Header="Copy"/>
+                                    <MenuItem Header="Clear Log Panel" InputGestureText="Alt+C"  Click="ClearLogPanel"/>
+                                    <MenuItem Header="Copy" InputGestureText="Ctrl+C" Click="CopyLogPanel"/>
                                 </ContextMenu>
                             </ListView.ContextMenu>
 

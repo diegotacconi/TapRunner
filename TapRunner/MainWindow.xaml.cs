@@ -39,6 +39,10 @@ namespace TapRunner
         public Verdict PlanVerdict { get; set; }
 
         #endregion
+        //private bool _testPlanRunning;
+        private TapThread _testPlanThread;
+        private LogPanel _logPanel;
+
 
         public MainWindow()
         {
@@ -54,8 +58,8 @@ namespace TapRunner
 
             // Log Panel
             LogPanel.SetStartupTime(start);
-            var logPanel = new LogPanel(LogListView);
-            Log.AddListener(logPanel);
+            _logPanel = new LogPanel(LogListView);
+            Log.AddListener(_logPanel);
 
             // Needed for binding
             //DataContext = this;
@@ -74,10 +78,6 @@ namespace TapRunner
             if (openFileDialog.ShowDialog() == true)
                 PlanPath = openFileDialog.FileName;
         }
-
-        //private bool _testPlanRunning;
-        private TapThread _testPlanThread;
-
 
         private void RunButton_OnClick(object sender, RoutedEventArgs e)
         {
@@ -142,6 +142,16 @@ namespace TapRunner
                 var path = Uri.UnescapeDataString(uri.Path);
                 return Path.GetDirectoryName(path);
             }
+        }
+
+        private void ClearLogPanel(object sender, RoutedEventArgs e)
+        {
+            _logPanel.Flush();
+        }
+
+        private void CopyLogPanel(object sender, RoutedEventArgs e)
+        {
+            Clipboard.SetText(_logPanel.GetContentOfSelectedItems());
         }
     }
 }

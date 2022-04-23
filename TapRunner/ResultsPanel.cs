@@ -25,6 +25,7 @@ namespace TapRunner
         public ResultsPanel(ListView listView)
         {
             Name = "ResultsPanel";
+            // listView.Items.Clear();
             _listView = listView;
         }
 

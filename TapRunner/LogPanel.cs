@@ -26,7 +26,29 @@ namespace TapRunner
         public override void Flush()
         {
             base.Flush();
-            _listView.Items.Clear();
+            _listView.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                _listView.Items.Clear();
+            }));
+        }
+
+        public string GetContentOfSelectedItems()
+        {
+            // ToDo: Need to sort by Timestamp instead of selection order.
+
+            //List<int> selectedInts = _listView.SelectedItems.OrderBy(i => i).ToList();
+
+            var content = "";
+            foreach (var item in _listView.SelectedItems)
+            {
+                var listViewItem = item as ListViewItem;
+                var logEvent = listViewItem.Content as LogEvent;
+                content += String.Format("{0,-13} ; {1,-12} ; {2}\n",
+                    logEvent.Timestamp,
+                    logEvent.Source,
+                    logEvent.Message);
+            }
+            return content;
         }
 
         private static Brush GetColorForTraceLevel(LogEventType eventType)
