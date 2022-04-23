@@ -61,6 +61,18 @@
                     <Grid>
                         <ListView x:Name="ResultsListView" FontFamily="Consolas" FontWeight="Normal" BorderThickness="0">
 
+                            <!-- This is required to handle ALT+C and CTRL+C -->
+                            <ListView.CommandBindings>
+                                <CommandBinding Command="Copy" Executed="CopyResultsPanel" />
+                                <CommandBinding Command="Cut" Executed="ClearResultsPanel" />
+                            </ListView.CommandBindings>
+
+                            <!-- This is required to handle ALT+C and CTRL+C -->
+                            <ListView.InputBindings>
+                                <KeyBinding Key="C" Modifiers="Control" Command="Copy" />
+                                <KeyBinding Key="C" Modifiers="Alt" Command="Cut" />
+                            </ListView.InputBindings>
+                            
                             <ListView.Resources>
                                 <Style TargetType="{x:Type GridViewColumnHeader}">
                                     <Setter Property="HorizontalContentAlignment" Value="Left"/>
@@ -83,8 +95,8 @@
 
                             <ListView.ContextMenu>
                                 <ContextMenu x:Name = "ResultsListViewCommandMenu">
-                                    <MenuItem Header="Clear Results Panel"/>
-                                    <MenuItem Header="Copy"/>
+                                    <MenuItem Header="Clear Results Panel" InputGestureText="Alt+C"  Click="ClearResultsPanel"/>
+                                    <MenuItem Header="Copy" InputGestureText="Ctrl+C" Click="CopyResultsPanel"/>
                                 </ContextMenu>
                             </ListView.ContextMenu>
 

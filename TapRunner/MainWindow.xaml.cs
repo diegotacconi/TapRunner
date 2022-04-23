@@ -144,6 +144,16 @@ namespace TapRunner
             }
         }
 
+        private void ClearResultsPanel(object sender, RoutedEventArgs e)
+        {
+            // ToDo
+        }
+
+        private void CopyResultsPanel(object sender, RoutedEventArgs e)
+        {
+            // ToDo
+        }
+
         private void ClearLogPanel(object sender, RoutedEventArgs e)
         {
             _logPanel.Flush();

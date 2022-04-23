@@ -34,20 +34,21 @@ namespace TapRunner
 
         public string GetContentOfSelectedItems()
         {
-            // ToDo: Need to sort by Timestamp instead of selection order.
-
-            //List<int> selectedInts = _listView.SelectedItems.OrderBy(i => i).ToList();
-
-            var content = "";
-            foreach (var item in _listView.SelectedItems)
+            var content = string.Empty;
+            for (int i = 0; i < _listView.Items.Count; i++)
             {
+                var item = _listView.Items[i];
                 var listViewItem = item as ListViewItem;
-                var logEvent = listViewItem.Content as LogEvent;
-                content += String.Format("{0,-13} ; {1,-12} ; {2}\n",
-                    logEvent.Timestamp,
-                    logEvent.Source,
-                    logEvent.Message);
+                if (listViewItem.IsSelected == true)
+                {
+                    var logEvent = listViewItem.Content as LogEvent;
+                    content += String.Format("{0,-12} ; {1,-14} ; {2}\n",
+                        logEvent.Timestamp,
+                        logEvent.Source,
+                        logEvent.Message);
+                }
             }
+
             return content;
         }
 
