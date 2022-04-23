@@ -25,7 +25,6 @@ namespace TapRunner
         public ResultsPanel(ListView listView)
         {
             Name = "ResultsPanel";
-            // listView.Items.Clear();
             _listView = listView;
         }
 
@@ -37,6 +36,37 @@ namespace TapRunner
             }));
         }
 
+        public string GetContentOfSelectedItems()
+        {
+            var content = string.Empty;
+
+            try
+            {
+                for (int i = 0; i < _listView.Items.Count; i++)
+                {
+                    var item = _listView.Items[i];
+                    var listViewItem = item as ListViewItem;
+                    if (listViewItem.IsSelected == true)
+                    {
+                        var measResult = listViewItem.Content as MeasResult;
+                        content += String.Format("{0,-40} ; {1,-12} ; {2,-12} ;  {3,-12} ; {4,-12} ; {5,-12} ; {6,-12}\n",
+                            measResult.Name,
+                            measResult.Verdict,
+                            measResult.Value,
+                            measResult.Unit,
+                            measResult.LowLimit,
+                            measResult.HighLimit,
+                            measResult.Comment);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Warning(ex.ToString());
+            }
+
+            return content;
+        }
         public override void OnTestPlanRunStart(TestPlanRun planRun)
         {
             // Log.Debug($"{nameof(OnTestPlanRunStart)}: planRun.TestPlanName = '{planRun.TestPlanName}'");
@@ -65,20 +95,23 @@ namespace TapRunner
                         var highLimit = resultTable.Columns[5].Data.GetValue(resIndex).ToString();
                         var comment = resultTable.Columns[6].Data.GetValue(resIndex).ToString();
 
-                        var measResult = new MeasResult
-                        {
-                            Name = name,
-                            Verdict = verdict,
-                            Value = value,
-                            Unit = unit,
-                            LowLimit = lowLimit,
-                            HighLimit = highLimit,
-                            Comment = comment,
-                        };
-
                         _listView.Dispatcher.BeginInvoke(new Action(() =>
                         {
-                            _listView.Items.Add(measResult);
+                            var listViewItem = new ListViewItem
+                            {
+                                Content = new MeasResult
+                                {
+                                    Name = name,
+                                    Verdict = verdict,
+                                    Value = value,
+                                    Unit = unit,
+                                    LowLimit = lowLimit,
+                                    HighLimit = highLimit,
+                                    Comment = comment,
+                                }
+                            };
+
+                            _listView.Items.Add(listViewItem);
 
                             // Automatic scroll if last item is in view
                             var scrollViewer = FindVisualChild<ScrollViewer>(_listView);

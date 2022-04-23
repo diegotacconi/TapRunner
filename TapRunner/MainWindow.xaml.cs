@@ -18,8 +18,6 @@ namespace TapRunner
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        #region Settings
-
         private string _planPath;
 
         public string PlanPath
@@ -38,11 +36,10 @@ namespace TapRunner
         public TestPlan Plan { get; set; } = new TestPlan();
         public Verdict PlanVerdict { get; set; }
 
-        #endregion
         //private bool _testPlanRunning;
         private TapThread _testPlanThread;
         private LogPanel _logPanel;
-
+        private ResultsPanel _resultsPanel;
 
         public MainWindow()
         {
@@ -60,6 +57,9 @@ namespace TapRunner
             LogPanel.SetStartupTime(start);
             _logPanel = new LogPanel(LogListView);
             Log.AddListener(_logPanel);
+
+            // Results Panel
+            _resultsPanel = new ResultsPanel(ResultsListView);
 
             // Needed for binding
             //DataContext = this;
@@ -102,7 +102,8 @@ namespace TapRunner
                 var resultListeners = new List<ResultListener>
                 {
                     new LogResultListener(),
-                    new ResultsPanel(ResultsListView)
+                    // new ResultsPanel(ResultsListView)
+                    _resultsPanel
                 };
 
                 // Specify a bench settings profile from which to load
@@ -146,17 +147,16 @@ namespace TapRunner
 
         private void ClearResultsPanel(object sender, RoutedEventArgs e)
         {
-            // ToDo
+            _resultsPanel.Flush();
+        }
+        private void ClearLogPanel(object sender, RoutedEventArgs e)
+        {
+            _logPanel.Flush();
         }
 
         private void CopyResultsPanel(object sender, RoutedEventArgs e)
         {
-            // ToDo
-        }
-
-        private void ClearLogPanel(object sender, RoutedEventArgs e)
-        {
-            _logPanel.Flush();
+            Clipboard.SetText(_resultsPanel.GetContentOfSelectedItems());
         }
 
         private void CopyLogPanel(object sender, RoutedEventArgs e)
