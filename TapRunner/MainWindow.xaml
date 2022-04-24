@@ -5,13 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="TapRunner"
-        MinHeight="200" MinWidth="300"
-        Height="600" Width="800">
+        MinHeight="400" MinWidth="500"
+        Height="700" Width="975">
     <Grid Background="WhiteSmoke">
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
@@ -43,124 +41,153 @@
         </Border>
         <!-- End of TestPlanPanel -->
 
-        <!-- Start of ResultsPanel -->
-        <Border Grid.Row="1" Margin="6,6,6,0">
-            <TabControl>
-                <!--
-                <TabItem>
-                    <TabItem.Header>
-                        <TextBlock Text="Plan" FontSize="14" />
-                    </TabItem.Header>
-                    <Grid Background="#FFE5E5E5"/>
-                </TabItem>
-                -->
-                <TabItem>
-                    <TabItem.Header>
-                        <TextBlock Text="Results" FontSize="14"/>
-                    </TabItem.Header>
-                    <Grid>
-                        <ListView x:Name="ResultsListView" FontFamily="Consolas" FontWeight="Normal" BorderThickness="0">
+        <Grid Grid.Row="1">
 
-                            <!-- This is required to handle ALT+C and CTRL+C -->
-                            <ListView.CommandBindings>
-                                <CommandBinding Command="Copy" Executed="CopyResultsPanel" />
-                                <CommandBinding Command="Cut" Executed="ClearResultsPanel" />
-                            </ListView.CommandBindings>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="275"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-                            <!-- This is required to handle ALT+C and CTRL+C -->
-                            <ListView.InputBindings>
-                                <KeyBinding Key="C" Modifiers="Control" Command="Copy" />
-                                <KeyBinding Key="C" Modifiers="Alt" Command="Cut" />
-                            </ListView.InputBindings>
-                            
-                            <ListView.Resources>
-                                <Style TargetType="{x:Type GridViewColumnHeader}">
-                                    <Setter Property="HorizontalContentAlignment" Value="Left"/>
-                                    <Setter Property="Padding" Value="6,3,6,3"/>
-                                    <Setter Property="FontFamily" Value="Segoe UI"/>
-                                </Style>
-                            </ListView.Resources>
+            <!-- Start of PlanPanel -->
+            <Border Grid.Column="0" Margin="6,6,0,6">
+                <TabControl>
+                    <TabItem>
+                        <TabItem.Header>
+                            <TextBlock Text="Plan" FontSize="14"/>
+                        </TabItem.Header>
+                        <Grid>
+                            <TreeView x:Name="PlanTreeView" FontWeight="Normal" BorderThickness="0">
 
-                            <ListView.View>
-                                <GridView>
-                                    <GridViewColumn Header="Name" Width="270" DisplayMemberBinding="{Binding Name}"/>
-                                    <GridViewColumn Header="Verdict" Width="70" DisplayMemberBinding="{Binding Verdict}"/>
-                                    <GridViewColumn Header="Value" Width="90" DisplayMemberBinding="{Binding Value}"/>
-                                    <GridViewColumn Header="Unit" Width="90" DisplayMemberBinding="{Binding Unit}"/>
-                                    <GridViewColumn Header="Low Limit" Width="90" DisplayMemberBinding="{Binding LowLimit}"/>
-                                    <GridViewColumn Header="High Limit" Width="90" DisplayMemberBinding="{Binding HighLimit}"/>
-                                    <GridViewColumn Header="Comment" Width="75" DisplayMemberBinding="{Binding Comment}"/>
-                                </GridView>
-                            </ListView.View>
+                            </TreeView>
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+            </Border>
+            <!-- End of PlanPanel -->
 
-                            <ListView.ContextMenu>
-                                <ContextMenu x:Name = "ResultsListViewCommandMenu">
-                                    <MenuItem Header="Clear Results Panel" InputGestureText="Alt+C"  Click="ClearResultsPanel"/>
-                                    <MenuItem Header="Copy" InputGestureText="Ctrl+C" Click="CopyResultsPanel"/>
-                                </ContextMenu>
-                            </ListView.ContextMenu>
+            <GridSplitter Grid.Column="1" Width="6" Background="Transparent" HorizontalAlignment="Stretch"/>
 
-                        </ListView>
-                    </Grid>
-                </TabItem>
-            </TabControl>
-        </Border>
-        <!-- End of ResultsPanel -->
+            <Grid Grid.Column="2">
 
-        <GridSplitter Grid.Row="2" Height="6" Background="Transparent" HorizontalAlignment="Stretch"/>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-        <!-- Start of LogPanel -->
-        <Border Grid.Row="3" Margin="6,0,6,6">
-            <TabControl>
-                <TabItem>
-                    <TabItem.Header>
-                        <TextBlock Text="Log" FontSize="14"/>
-                    </TabItem.Header>
-                    <Grid>
-                        <ListView x:Name="LogListView" FontFamily="Consolas" FontWeight="Normal" BorderThickness="0" SelectionMode="Extended">
+                <!-- Start of ResultsPanel -->
+                <Border Grid.Row="0" Margin="0,6,6,0">
+                    <TabControl>
+                        <TabItem>
+                            <TabItem.Header>
+                                <TextBlock Text="Results" FontSize="14"/>
+                            </TabItem.Header>
+                            <Grid>
+                                <ListView x:Name="ResultsListView" FontFamily="Consolas" FontWeight="Normal" BorderThickness="0">
 
-                            <!-- This is required to handle ALT+C and CTRL+C -->
-                            <ListView.CommandBindings>
-                                <CommandBinding Command="Copy" Executed="CopyLogPanel" />
-                                <CommandBinding Command="Cut" Executed="ClearLogPanel" />
-                            </ListView.CommandBindings>
+                                    <!-- This is required to handle ALT+C and CTRL+C -->
+                                    <ListView.CommandBindings>
+                                        <CommandBinding Command="Copy" Executed="CopyResultsPanel" />
+                                        <CommandBinding Command="Cut" Executed="ClearResultsPanel" />
+                                    </ListView.CommandBindings>
 
-                            <!-- This is required to handle ALT+C and CTRL+C -->
-                            <ListView.InputBindings>
-                                <KeyBinding Key="C" Modifiers="Control" Command="Copy" />
-                                <KeyBinding Key="C" Modifiers="Alt" Command="Cut" />
-                            </ListView.InputBindings>
+                                    <!-- This is required to handle ALT+C and CTRL+C -->
+                                    <ListView.InputBindings>
+                                        <KeyBinding Key="C" Modifiers="Control" Command="Copy" />
+                                        <KeyBinding Key="C" Modifiers="Alt" Command="Cut" />
+                                    </ListView.InputBindings>
 
-                            <ListView.Resources>
-                                <Style TargetType="{x:Type GridViewColumnHeader}">
-                                    <Setter Property="HorizontalContentAlignment" Value="Left"/>
-                                    <Setter Property="Padding" Value="6,3,6,3"/>
-                                    <Setter Property="FontFamily" Value="Segoe UI"/>
-                                </Style>
-                            </ListView.Resources>
+                                    <ListView.Resources>
+                                        <Style TargetType="{x:Type GridViewColumnHeader}">
+                                            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                                            <Setter Property="Padding" Value="6,3,6,3"/>
+                                            <Setter Property="FontFamily" Value="Segoe UI"/>
+                                        </Style>
+                                    </ListView.Resources>
 
-                            <ListView.View>
-                                <!-- <GridView ColumnHeaderContainerStyle="{StaticResource StyleGridViewColumnHeader}"> -->
-                                <GridView>
-                                    <GridViewColumn Header="Timestamp" Width="100"  DisplayMemberBinding="{Binding Timestamp}"/>
-                                    <GridViewColumn Header="Source" Width="120" DisplayMemberBinding="{Binding Source}"/>
-                                    <GridViewColumn Header="Message"  Width="1000" DisplayMemberBinding="{Binding Message}"/>
-                                </GridView>
-                            </ListView.View>
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridViewColumn Header="Name" Width="270" DisplayMemberBinding="{Binding Name}"/>
+                                            <GridViewColumn Header="Verdict" Width="70" DisplayMemberBinding="{Binding Verdict}"/>
+                                            <GridViewColumn Header="Value" Width="90" DisplayMemberBinding="{Binding Value}"/>
+                                            <GridViewColumn Header="Unit" Width="70" DisplayMemberBinding="{Binding Unit}"/>
+                                            <GridViewColumn Header="Low Limit" Width="90" DisplayMemberBinding="{Binding LowLimit}"/>
+                                            <GridViewColumn Header="High Limit" Width="90" DisplayMemberBinding="{Binding HighLimit}"/>
+                                            <GridViewColumn Header="Comment" Width="75" DisplayMemberBinding="{Binding Comment}"/>
+                                        </GridView>
+                                    </ListView.View>
 
-                            <ListView.ContextMenu>
-                                <ContextMenu x:Name = "LogListViewCommandMenu">
-                                    <MenuItem Header="Clear Log Panel" InputGestureText="Alt+C"  Click="ClearLogPanel"/>
-                                    <MenuItem Header="Copy" InputGestureText="Ctrl+C" Click="CopyLogPanel"/>
-                                </ContextMenu>
-                            </ListView.ContextMenu>
+                                    <ListView.ContextMenu>
+                                        <ContextMenu x:Name = "ResultsListViewCommandMenu">
+                                            <MenuItem Header="Clear Results Panel" InputGestureText="Alt+C"  Click="ClearResultsPanel"/>
+                                            <MenuItem Header="Copy" InputGestureText="Ctrl+C" Click="CopyResultsPanel"/>
+                                        </ContextMenu>
+                                    </ListView.ContextMenu>
 
-                        </ListView>
-                    </Grid>
-                </TabItem>
-            </TabControl>
-        </Border>
-        <!-- End of LogPanel -->
+                                </ListView>
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
+                </Border>
+                <!-- End of ResultsPanel -->
 
+                <GridSplitter Grid.Row="1" Height="6" Background="Transparent" HorizontalAlignment="Stretch"/>
+
+                <!-- Start of LogPanel -->
+                <Border Grid.Row="2" Margin="0,0,6,6">
+                    <TabControl>
+                        <TabItem>
+                            <TabItem.Header>
+                                <TextBlock Text="Log" FontSize="14"/>
+                            </TabItem.Header>
+                            <Grid>
+                                <ListView x:Name="LogListView" FontFamily="Consolas" FontWeight="Normal" BorderThickness="0" SelectionMode="Extended">
+
+                                    <!-- This is required to handle ALT+C and CTRL+C -->
+                                    <ListView.CommandBindings>
+                                        <CommandBinding Command="Copy" Executed="CopyLogPanel" />
+                                        <CommandBinding Command="Cut" Executed="ClearLogPanel" />
+                                    </ListView.CommandBindings>
+
+                                    <!-- This is required to handle ALT+C and CTRL+C -->
+                                    <ListView.InputBindings>
+                                        <KeyBinding Key="C" Modifiers="Control" Command="Copy" />
+                                        <KeyBinding Key="C" Modifiers="Alt" Command="Cut" />
+                                    </ListView.InputBindings>
+
+                                    <ListView.Resources>
+                                        <Style TargetType="{x:Type GridViewColumnHeader}">
+                                            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                                            <Setter Property="Padding" Value="6,3,6,3"/>
+                                            <Setter Property="FontFamily" Value="Segoe UI"/>
+                                        </Style>
+                                    </ListView.Resources>
+
+                                    <ListView.View>
+                                        <!-- <GridView ColumnHeaderContainerStyle="{StaticResource StyleGridViewColumnHeader}"> -->
+                                        <GridView>
+                                            <GridViewColumn Header="Timestamp" Width="100"  DisplayMemberBinding="{Binding Timestamp}"/>
+                                            <GridViewColumn Header="Source" Width="120" DisplayMemberBinding="{Binding Source}"/>
+                                            <GridViewColumn Header="Message"  Width="1000" DisplayMemberBinding="{Binding Message}"/>
+                                        </GridView>
+                                    </ListView.View>
+
+                                    <ListView.ContextMenu>
+                                        <ContextMenu x:Name = "LogListViewCommandMenu">
+                                            <MenuItem Header="Clear Log Panel" InputGestureText="Alt+C"  Click="ClearLogPanel"/>
+                                            <MenuItem Header="Copy" InputGestureText="Ctrl+C" Click="CopyLogPanel"/>
+                                        </ContextMenu>
+                                    </ListView.ContextMenu>
+
+                                </ListView>
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
+                </Border>
+                <!-- End of LogPanel -->
+
+            </Grid>
+        </Grid>
     </Grid>
 </Window>
