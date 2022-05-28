@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="TapRunner"
-        MinHeight="400" MinWidth="500"
+        MinHeight="480" MinWidth="640"
         Height="700" Width="975">
     <Grid Background="WhiteSmoke">
 
@@ -16,35 +16,40 @@
 
         <!-- Start of TestPlanPanel -->
         <Border Grid.Row="0" Margin="6,6,6,0" Background="Transparent">
-            <StackPanel Orientation="Horizontal" Background="Transparent">
+            <StackPanel Orientation="Horizontal">
 
-                <Label Content="Test Plan:" FontSize="14"/>
-                <Border Margin="6,0,6,0" Height="24">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBox x:Name="TestPlanTextBox" Width="400" VerticalContentAlignment="Center" BorderThickness="1,1,0,1" BorderBrush="Gray" Text="{Binding Path=PlanPath}" />
-                        <Button x:Name="BrowseButton" Width="24" UseLayoutRounding="True" BorderThickness="1,1,1,1" ToolTip="Open test plan file" Click="BrowseButton_OnClick">
-                            <TextBlock FontSize="14" FontFamily="Segoe MDL2 Assets" Text="&#xE838;" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <!-- Enter Test Plan file -->
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Test Plan:" FontSize="14"/>
+                    <Border Margin="6,0,6,0" Height="24">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox x:Name="TestPlanTextBox" Width="370" VerticalContentAlignment="Center" BorderThickness="1,1,0,1" BorderBrush="#ADADAD" Text="{Binding Path=PlanPath}" />
+                            <Button x:Name="BrowseButton" Width="24" UseLayoutRounding="True" BorderBrush="#ADADAD" BorderThickness="1,1,1,1" ToolTip="Open test plan file" Click="BrowseButton_OnClick">
+                                <TextBlock FontSize="14" FontFamily="Segoe MDL2 Assets" Text="&#xE838;" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            </Button>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+                <!-- Start and Stop Buttons -->
+                <StackPanel Orientation="Horizontal">
+                    <Border Margin="6,0,6,0" Height="24">
+                        <Button x:Name="RunButton" UseLayoutRounding="True" BorderBrush="#ADADAD" BorderThickness="1" ToolTip="Run test plan" Click="RunButton_OnClick">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="2,0,2,0" FontSize="16" FontFamily="Segoe MDL2 Assets" Text="&#xE768;" Foreground="DarkGreen" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                <TextBlock Margin="2,0,6,0" FontSize="14" Text="Start" VerticalAlignment="Center"/>
+                            </StackPanel>
                         </Button>
-                    </StackPanel>
-                </Border>
-
-                <Border Margin="6,0,6,0" Height="24">
-                    <Button x:Name="RunButton" UseLayoutRounding="True" BorderThickness="1" ToolTip="Run test plan" Click="RunButton_OnClick">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Margin="2,0,2,0" FontSize="16" FontFamily="Segoe MDL2 Assets" Text="&#xE768;" Foreground="DarkGreen" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <TextBlock Margin="2,0,6,0" FontSize="14" Text="Start" VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </Button>
-                </Border>
-
-                <Border Margin="6,0,6,0" Height="24">
-                    <Button x:Name="AbortButton" UseLayoutRounding="True" BorderThickness="1" ToolTip="Abort test plan execution" Click="AbortButton_OnClick">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Margin="2,0,2,0" FontSize="16" FontFamily="Segoe MDL2 Assets" Text="&#xE71A;" Foreground="DarkRed" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <TextBlock Margin="2,0,6,0" FontSize="14" Text="Stop" VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </Button>
-                </Border>
+                    </Border>
+                    <Border Margin="6,0,6,0" Height="24">
+                        <Button x:Name="AbortButton" UseLayoutRounding="True" BorderBrush="#ADADAD" BorderThickness="1" ToolTip="Abort test plan execution" Click="AbortButton_OnClick">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="2,0,2,0" FontSize="16" FontFamily="Segoe MDL2 Assets" Text="&#xE71A;" Foreground="DarkRed" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                <TextBlock Margin="2,0,6,0" FontSize="14" Text="Stop" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+                    </Border>
+                </StackPanel>
 
             </StackPanel>
         </Border>
