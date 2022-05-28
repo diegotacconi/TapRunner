@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Reflection;
+using System.Threading;
 using System.Windows;
 using Microsoft.Win32;
 using OpenTap;
@@ -41,6 +42,7 @@ namespace TapRunner
         private LogPanel _logPanel;
         private ResultsPanel _resultsPanel;
 
+
         public MainWindow()
         {
             InitializeComponent();
@@ -60,9 +62,6 @@ namespace TapRunner
 
             // Results Panel
             _resultsPanel = new ResultsPanel(ResultsListView);
-
-            // Needed for binding
-            //DataContext = this;
         }
 
         private void BrowseButton_OnClick(object sender, RoutedEventArgs e)
@@ -77,20 +76,29 @@ namespace TapRunner
 
             if (openFileDialog.ShowDialog() == true)
                 PlanPath = openFileDialog.FileName;
+
+            LoadTestPlan(PlanPath);
+        }
+
+        private void LoadTestPlan(string path)
+        {
+            Plan = TestPlan.Load(path);
+            // PlanTreeView = Plan.Steps;
+            // treeView.SetTreeViewSource(Plan.Steps);
         }
 
         private void RunButton_OnClick(object sender, RoutedEventArgs e)
         {
             _testPlanThread = TapThread.Start(() =>
             {
-                // Point to log file to be used.
-                // SessionLogs.Initialize("C:\\Temp\\Console_log.txt");
-
                 // Start finding plugins.
+                // PluginManager.DirectoriesToSearch.AddRange(Search);
                 PluginManager.SearchAsync();
 
                 // Load the Test Plan.
-                Plan = TestPlan.Load(PlanPath);
+                if (Plan == null)
+                    LoadTestPlan(PlanPath);
+
                 Plan.PrintTestPlanRunSummary = true;
                 PlanVerdict = Verdict.Inconclusive;
 
@@ -116,15 +124,18 @@ namespace TapRunner
                     TestPlanRunner.SetSettingsDir(settings);
                 }
 
+
+
                 // Execute the Test Plan.
                 //_testPlanRunning = true;
-                var myTestPlanRun = Plan.Execute(resultListeners);
+
+                // PlanVerdict = Plan.Execute(resultListeners).Verdict;
+                PlanVerdict = TestPlanRunner.RunPlanForDut(Plan, new List<ResultParameter>(), CancellationToken.None);
 
                 //_testPlanRunning = false;
-                Plan = null;
 
-                // Set verdict
-                PlanVerdict = myTestPlanRun.Verdict;
+                // This forces test plan to be loaded again at every execution
+                Plan = null;
             });
         }
 
