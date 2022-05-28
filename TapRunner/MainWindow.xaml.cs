@@ -99,7 +99,7 @@ namespace TapRunner
                 if (Plan == null)
                     LoadTestPlan(PlanPath);
 
-                Plan.PrintTestPlanRunSummary = true;
+                // Plan.PrintTestPlanRunSummary = true;
                 PlanVerdict = Verdict.Inconclusive;
 
                 // Clear log and results panels in the GUI
@@ -109,7 +109,7 @@ namespace TapRunner
                 // Configure Result Listeners
                 var resultListeners = new List<ResultListener>
                 {
-                    new LogResultListener(),
+                    // new LogResultListener(),
                     // new ResultsPanel(ResultsListView)
                     _resultsPanel
                 };
@@ -124,13 +124,11 @@ namespace TapRunner
                     TestPlanRunner.SetSettingsDir(settings);
                 }
 
-
-
                 // Execute the Test Plan.
                 //_testPlanRunning = true;
 
                 // PlanVerdict = Plan.Execute(resultListeners).Verdict;
-                PlanVerdict = TestPlanRunner.RunPlanForDut(Plan, new List<ResultParameter>(), CancellationToken.None);
+                PlanVerdict = TestPlanRunner.RunPlanForDut(Plan, resultListeners, CancellationToken.None);
 
                 //_testPlanRunning = false;
 

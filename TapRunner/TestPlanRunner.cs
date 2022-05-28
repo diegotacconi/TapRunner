@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using OpenTap;
+
 
 namespace TapRunner
 {
@@ -10,11 +12,11 @@ namespace TapRunner
     {
         private static readonly TraceSource log = Log.CreateSource("Main");
 
-        public static Verdict RunPlanForDut(TestPlan plan, List<ResultParameter> metadata,
-            CancellationToken cancellationToken)
+        public static Verdict RunPlanForDut(TestPlan plan, IEnumerable<IResultListener> resultListeners, CancellationToken cancellationToken)
         {
             plan.PrintTestPlanRunSummary = true;
-            return plan.ExecuteAsync(ResultSettings.Current, metadata, null, cancellationToken).Result.Verdict;
+            resultListeners = resultListeners.Concat(ResultSettings.Current);
+            return plan.ExecuteAsync(resultListeners, new List<ResultParameter>(), null, cancellationToken).Result.Verdict;
         }
 
         public static void SetSettingsDir(string dir)
