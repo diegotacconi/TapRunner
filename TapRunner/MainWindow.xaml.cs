@@ -48,7 +48,7 @@ namespace TapRunner
             InitializeComponent();
 
             // Default values
-            PlanPath = @"..\..\..\TapPlans\Example1.TapPlan";
+            PlanPath = @"..\..\TapPlans\Example1.TapPlan";
             TestPlanTextBox.DataContext = this;
 
             PlanVerdict = Verdict.Inconclusive;
@@ -96,7 +96,7 @@ namespace TapRunner
                 PluginManager.SearchAsync();
 
                 // Load the Test Plan.
-                if (Plan == null)
+                if (Plan == null || Plan.Path == null)
                     LoadTestPlan(PlanPath);
 
                 // Plan.PrintTestPlanRunSummary = true;
