@@ -42,7 +42,6 @@ namespace TapRunner
         private LogPanel _logPanel;
         private ResultsPanel _resultsPanel;
 
-
         public MainWindow()
         {
             InitializeComponent();
@@ -80,11 +79,26 @@ namespace TapRunner
             LoadTestPlan(PlanPath);
         }
 
+        public class PlanItem
+        {
+            public string Name { get; set; }
+            public string Verdict { get; set; }
+        }
+
         private void LoadTestPlan(string path)
         {
             Plan = TestPlan.Load(path);
             // PlanTreeView = Plan.Steps;
             // treeView.SetTreeViewSource(Plan.Steps);
+
+
+            // Populate list
+            // PlanListView.Items.Add(new PlanItem { Name = "Test1", Verdict = "Passed"});
+
+            foreach (var item in Plan.Steps)
+            {
+                PlanListView.Items.Add(new PlanItem { Name = item.Name });
+            }
         }
 
         private void RunButton_OnClick(object sender, RoutedEventArgs e)
