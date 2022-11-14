@@ -67,6 +67,7 @@ namespace TapRunner
 
             return content;
         }
+
         public override void OnTestPlanRunStart(TestPlanRun planRun)
         {
             // Log.Debug($"{nameof(OnTestPlanRunStart)}: planRun.TestPlanName = '{planRun.TestPlanName}'");

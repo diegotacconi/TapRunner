@@ -13,6 +13,13 @@ namespace TapRunner
         private static long _globalTimer = DateTime.Now.Ticks;
         private readonly ListView _listView;
 
+        private class LogEvent
+        {
+            public string Timestamp { get; set; }
+            public string Source { get; set; }
+            public string Message { get; set; }
+        }
+
         public static void SetStartupTime(DateTime time)
         {
             _globalTimer = time.Ticks;
@@ -103,13 +110,6 @@ namespace TapRunner
                     */
                 })
             );
-        }
-
-        private class LogEvent
-        {
-            public string Timestamp { get; set; }
-            public string Source { get; set; }
-            public string Message { get; set; }
         }
 
         public override void TraceEvents(IEnumerable<Event> events)
