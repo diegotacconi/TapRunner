@@ -1,12 +1,15 @@
-﻿<Window x:Class="TapRunner.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d"
-        Title="TapRunner"
-        MinHeight="480" MinWidth="640"
-        Height="700" Width="975">
+﻿<mah:MetroWindow x:Class="TapRunner.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="TapRunner"
+    MinHeight="480" MinWidth="640"
+    Height="700" Width="975">
+
     <Grid Background="WhiteSmoke">
 
         <Grid.RowDefinitions>
@@ -14,51 +17,49 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Start of TestPlanPanel -->
+        <!-- Start of Toolbar -->
         <Border Grid.Row="0" Margin="6,6,6,0" Background="Transparent">
             <StackPanel Orientation="Horizontal">
 
                 <!-- Enter Test Plan file -->
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="Test Plan:" FontSize="14"/>
-                    <Border Margin="6,0,6,0" Height="24">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBox x:Name="TestPlanTextBox" Width="370" VerticalContentAlignment="Center" BorderThickness="1,1,0,1" BorderBrush="#ADADAD" Text="{Binding Path=PlanPath}" />
-                            <Button x:Name="BrowseButton" Width="24" UseLayoutRounding="True" BorderBrush="#ADADAD" BorderThickness="1,1,1,1" ToolTip="Open test plan file" Click="BrowseButton_OnClick">
-                                <TextBlock FontSize="14" FontFamily="Segoe MDL2 Assets" Text="&#xE838;" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                            </Button>
-                        </StackPanel>
-                    </Border>
+                    <Label Content="Test Plan:"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox Margin="6,0,0,0" x:Name="TestPlanTextBox" Width="370" VerticalContentAlignment="Center" Text="{Binding Path=PlanPath}" />
+                    </StackPanel>
                 </StackPanel>
 
-                <!-- Start and Stop Buttons -->
-                <StackPanel Orientation="Horizontal">
-                    <Border Margin="6,0,6,0" Height="24">
-                        <Button x:Name="RunButton" UseLayoutRounding="True" BorderBrush="#ADADAD" BorderThickness="1" ToolTip="Run test plan" Click="RunButton_OnClick">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Margin="2,0,2,0" FontSize="16" FontFamily="Segoe MDL2 Assets" Text="&#xE768;" Foreground="DarkGreen" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                <TextBlock Margin="2,0,6,0" FontSize="14" Text="Start" VerticalAlignment="Center"/>
-                            </StackPanel>
-                        </Button>
-                    </Border>
-                    <Border Margin="6,0,6,0" Height="24">
-                        <Button x:Name="AbortButton" UseLayoutRounding="True" BorderBrush="#ADADAD" BorderThickness="1" ToolTip="Abort test plan execution" Click="AbortButton_OnClick">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Margin="2,0,2,0" FontSize="16" FontFamily="Segoe MDL2 Assets" Text="&#xE71A;" Foreground="DarkRed" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                <TextBlock Margin="2,0,6,0" FontSize="14" Text="Stop" VerticalAlignment="Center"/>
-                            </StackPanel>
-                        </Button>
-                    </Border>
-                </StackPanel>
+                <!-- Browse Button -->
+                <Button x:Name="BrowseButton" Margin="6,0,0,0" ToolTip="Select test plan file" Click="BrowseButton_OnClick">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE838;" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+
+                <!-- Start Button -->
+                <Button x:Name="RunButton" Margin="6,0,0,0" ToolTip="Run test plan" Click="RunButton_OnClick">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE768;" Foreground="DarkGreen" VerticalAlignment="Center"/>
+                        <TextBlock Margin="6,0,0,0" Text="Start" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+
+                <!-- Abort Button -->
+                <Button x:Name="AbortButton" Margin="6,0,0,0" ToolTip="Abort test plan execution" Click="AbortButton_OnClick">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE71A;" Foreground="DarkRed" VerticalAlignment="Center"/>
+                        <TextBlock Margin="6,0,0,0" Text="Stop" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
 
             </StackPanel>
         </Border>
-        <!-- End of TestPlanPanel -->
+        <!-- End of Toolbar -->
 
         <Grid Grid.Row="1">
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="224"/>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
@@ -219,4 +220,4 @@
             </Grid>
         </Grid>
     </Grid>
-</Window>
+</mah:MetroWindow>

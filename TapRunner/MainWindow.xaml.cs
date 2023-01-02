@@ -5,12 +5,13 @@ using System.IO;
 using System.Reflection;
 using System.Threading;
 using System.Windows;
+using MahApps.Metro.Controls;
 using Microsoft.Win32;
 using OpenTap;
 
 namespace TapRunner
 {
-    public partial class MainWindow : Window, INotifyPropertyChanged
+    public partial class MainWindow : MetroWindow, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -94,10 +95,19 @@ namespace TapRunner
 
             // Populate list
             // PlanListView.Items.Add(new PlanItem { Name = "Test1", Verdict = "Passed"});
+            try
+            {
+                PlanListView.Items.Clear();
+            }
+            catch { }
 
             foreach (var item in Plan.Steps)
             {
-                PlanListView.Items.Add(new PlanItem { Name = item.Name });
+                try
+                {
+                    PlanListView.Items.Add(new PlanItem { Name = item.Name });
+                }
+                catch { }
             }
         }
 

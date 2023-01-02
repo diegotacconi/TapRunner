@@ -100,6 +100,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="MahApps.Metro">
+      <Version>2.4.9</Version>
+    </PackageReference>
     <PackageReference Include="OpenTAP">
       <Version>9.16.4</Version>
     </PackageReference>
