@@ -118,8 +118,8 @@
 
                                     <!-- This is required to handle ALT+C and CTRL+C -->
                                     <ListView.CommandBindings>
-                                        <CommandBinding Command="Copy" Executed="CopyResultsPanel" />
-                                        <CommandBinding Command="Cut" Executed="ClearResultsPanel" />
+                                        <CommandBinding Command="Copy" Executed="OnCopyResultsPanel" />
+                                        <CommandBinding Command="Cut" Executed="OnClearResultsPanel" />
                                     </ListView.CommandBindings>
 
                                     <!-- This is required to handle ALT+C and CTRL+C -->
@@ -150,8 +150,8 @@
 
                                     <ListView.ContextMenu>
                                         <ContextMenu x:Name = "ResultsListViewCommandMenu">
-                                            <MenuItem Header="Clear Results Panel" InputGestureText="Alt+C"  Click="ClearResultsPanel"/>
-                                            <MenuItem Header="Copy" InputGestureText="Ctrl+C" Click="CopyResultsPanel"/>
+                                            <MenuItem Header="Clear Results Panel" InputGestureText="Alt+C"  Click="OnClearResultsPanel"/>
+                                            <MenuItem Header="Copy" InputGestureText="Ctrl+C" Click="OnCopyResultsPanel"/>
                                         </ContextMenu>
                                     </ListView.ContextMenu>
 
@@ -176,8 +176,8 @@
 
                                     <!-- This is required to handle ALT+C and CTRL+C -->
                                     <ListView.CommandBindings>
-                                        <CommandBinding Command="Copy" Executed="CopyLogPanel" />
-                                        <CommandBinding Command="Cut" Executed="ClearLogPanel" />
+                                        <CommandBinding Command="Copy" Executed="OnCopyLogPanel" />
+                                        <CommandBinding Command="Cut" Executed="OnClearLogPanel" />
                                     </ListView.CommandBindings>
 
                                     <!-- This is required to handle ALT+C and CTRL+C -->
@@ -205,8 +205,8 @@
 
                                     <ListView.ContextMenu>
                                         <ContextMenu x:Name = "LogListViewCommandMenu">
-                                            <MenuItem Header="Clear Log Panel" InputGestureText="Alt+C"  Click="ClearLogPanel"/>
-                                            <MenuItem Header="Copy" InputGestureText="Ctrl+C" Click="CopyLogPanel"/>
+                                            <MenuItem Header="Clear Log Panel" InputGestureText="Alt+C"  Click="OnClearLogPanel"/>
+                                            <MenuItem Header="Copy" InputGestureText="Ctrl+C" Click="OnCopyLogPanel"/>
                                         </ContextMenu>
                                     </ListView.ContextMenu>
 

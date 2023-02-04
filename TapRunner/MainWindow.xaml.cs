@@ -89,12 +89,8 @@ namespace TapRunner
         private void LoadTestPlan(string path)
         {
             Plan = TestPlan.Load(path);
-            // PlanTreeView = Plan.Steps;
-            // treeView.SetTreeViewSource(Plan.Steps);
-
 
             // Populate list
-            // PlanListView.Items.Add(new PlanItem { Name = "Test1", Verdict = "Passed"});
             try
             {
                 PlanListView.Items.Clear();
@@ -178,23 +174,24 @@ namespace TapRunner
             }
         }
 
-        private void ClearResultsPanel(object sender, RoutedEventArgs e)
-        {
-            _resultsPanel.Flush();
-        }
-        private void ClearLogPanel(object sender, RoutedEventArgs e)
+        private void OnClearLogPanel(object sender, RoutedEventArgs e)
         {
             _logPanel.Flush();
         }
 
-        private void CopyResultsPanel(object sender, RoutedEventArgs e)
+        private void OnClearResultsPanel(object sender, RoutedEventArgs e)
         {
-            Clipboard.SetText(_resultsPanel.GetContentOfSelectedItems());
+            _resultsPanel.Flush();
         }
 
-        private void CopyLogPanel(object sender, RoutedEventArgs e)
+        private void OnCopyLogPanel(object sender, RoutedEventArgs e)
         {
             Clipboard.SetText(_logPanel.GetContentOfSelectedItems());
+        }
+
+        private void OnCopyResultsPanel(object sender, RoutedEventArgs e)
+        {
+            Clipboard.SetText(_resultsPanel.GetContentOfSelectedItems());
         }
     }
 }
