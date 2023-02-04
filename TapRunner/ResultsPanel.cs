@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -24,7 +23,7 @@ namespace TapRunner
 
         public ResultsPanel(ListView listView)
         {
-            Name = "ResultsPanel";
+            Name = nameof(ResultsPanel);
             _listView = listView;
         }
 
@@ -70,13 +69,7 @@ namespace TapRunner
 
         public override void OnTestPlanRunStart(TestPlanRun planRun)
         {
-            // Log.Debug($"{nameof(OnTestPlanRunStart)}: planRun.TestPlanName = '{planRun.TestPlanName}'");
             Flush();
-        }
-
-        public override void OnTestStepRunStart(TestStepRun stepRun)
-        {
-            // Log.Debug($"{nameof(OnTestStepRunStart)}: stepRun.TestStepName = '{stepRun.TestStepName}'");
         }
 
         public override void OnResultPublished(Guid stepRun, ResultTable resultTable)
@@ -151,36 +144,6 @@ namespace TapRunner
             }
 
             return null;
-        }
-
-        public override void OnTestStepRunCompleted(TestStepRun stepRun)
-        {
-            /*
-            Log.Debug(
-                $"{nameof(OnTestStepRunCompleted)}: stepRun.TestStepName = '{stepRun.TestStepName}', " +
-                $"stepRun.Duration.TotalMilliseconds = '{stepRun.Duration.TotalMilliseconds}'");
-            */
-        }
-
-        public override void OnTestPlanRunCompleted(TestPlanRun planRun, Stream logStream)
-        {
-            /*
-            Log.Debug(
-                $"{nameof(OnTestPlanRunCompleted)}: planRun.Duration.TotalSeconds = '{planRun.Duration.TotalSeconds}', " +
-                $"planRun.Parameters.Count = '{planRun.Parameters.Count}'");
-            */
-        }
-
-        public override void Open()
-        {
-            base.Open();
-            //Add resource open code.
-        }
-
-        public override void Close()
-        {
-            //Add resource close code.
-            base.Close();
         }
     }
 }

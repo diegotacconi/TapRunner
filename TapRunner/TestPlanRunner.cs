@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading;
 using OpenTap;
 
-
 namespace TapRunner
 {
     internal class TestPlanRunner
