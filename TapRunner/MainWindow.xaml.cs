@@ -5,13 +5,12 @@ using System.IO;
 using System.Reflection;
 using System.Threading;
 using System.Windows;
-using MahApps.Metro.Controls;
 using Microsoft.Win32;
 using OpenTap;
 
 namespace TapRunner
 {
-    public partial class MainWindow : MetroWindow, INotifyPropertyChanged
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
