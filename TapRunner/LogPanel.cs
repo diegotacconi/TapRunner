@@ -93,7 +93,12 @@ namespace TapRunner
                         }
                     };
 
+                    var logScrollbackLimit = 10000;
                     _listView.Items.Add(listViewItem);
+                    if (_listView.Items.Count > logScrollbackLimit)
+                    {
+                        _listView.Items.RemoveAt(0);
+                    }
 
                     // Automatic scroll if last item is in view
                     var scrollViewer = FindVisualChild<ScrollViewer>(_listView);
