@@ -5,8 +5,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Title="TapRunner"
-    MinHeight="480" MinWidth="640"
-    Height="700" Width="975">
+    Width="975"
+    Height="700"
+    MinWidth="640"
+    MinHeight="480"
+    UseLayoutRounding="True">
 
     <Grid Background="WhiteSmoke">
 
@@ -23,7 +26,7 @@
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Test Plan:"/>
                     <StackPanel Orientation="Horizontal">
-                        <TextBox Margin="6,0,0,0" x:Name="TestPlanTextBox" Width="370" VerticalContentAlignment="Center" Text="{Binding Path=PlanPath}" />
+                        <TextBox Margin="6,0,0,0" x:Name="TestPlanTextBox" Width="390" VerticalContentAlignment="Center" Text="{Binding Path=PlanPath}" />
                     </StackPanel>
                 </StackPanel>
 
