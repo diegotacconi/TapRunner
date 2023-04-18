@@ -11,15 +11,41 @@
     MinHeight="480"
     UseLayoutRounding="True">
 
+    <Window.CommandBindings>
+        <CommandBinding Command="Open" Executed="OnOpenMenu" />
+    </Window.CommandBindings>
+    <Window.InputBindings>
+        <KeyBinding Key="O" Modifiers="Control" Command="Open"/>
+    </Window.InputBindings>
+
     <Grid Background="WhiteSmoke">
 
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <!-- Start of Menu -->
+        <Menu Grid.Row="0">
+            <MenuItem Header="File">
+                <MenuItem Header="_Open File..." Click="OnOpenMenu" InputGestureText="Ctrl+O"/>
+                <MenuItem Header="_Close" Click="OnCloseMenu"/>
+                <Separator />
+                <MenuItem Header="E_xit" Click="OnExitMenu" InputGestureText="Alt+F4"/>
+            </MenuItem>
+            <MenuItem Header="Execute">
+                <MenuItem Header="Run" Click="OnRunMenu"/>
+                <MenuItem Header="Abort" Click="OnAbortMenu"/>
+            </MenuItem>
+            <MenuItem Header="Help">
+                <MenuItem Header="About..." Click="OnAboutMenu"/>
+            </MenuItem>
+        </Menu>
+        <!-- End of Menu -->
+
         <!-- Start of Toolbar -->
-        <Border Grid.Row="0" Margin="6,6,6,0" Background="Transparent">
+        <Border Grid.Row="1" Margin="6,6,6,0" Background="Transparent">
             <StackPanel Orientation="Horizontal">
 
                 <!-- Enter Test Plan file -->
@@ -31,14 +57,14 @@
                 </StackPanel>
 
                 <!-- Browse Button -->
-                <Button x:Name="BrowseButton" Margin="6,0,0,0" ToolTip="Select test plan file" Click="BrowseButton_OnClick" Padding="6,1">
+                <Button x:Name="BrowseButton" Margin="6,0,0,0" ToolTip="Select test plan file" Click="OnOpenMenu" Padding="6,1">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE838;" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Button>
 
                 <!-- Start Button -->
-                <Button x:Name="RunButton" Margin="6,0,0,0" ToolTip="Run test plan" Click="RunButton_OnClick" Padding="6,1" Grid.IsSharedSizeScope="True">
+                <Button x:Name="RunButton" Margin="6,0,0,0" ToolTip="Run test plan" Click="OnRunMenu" Padding="6,1" Grid.IsSharedSizeScope="True">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE768;" Foreground="DarkGreen" VerticalAlignment="Center"/>
                         <TextBlock Margin="6,0,0,0" Text="Start" VerticalAlignment="Center"/>
@@ -46,7 +72,7 @@
                 </Button>
 
                 <!-- Abort Button -->
-                <Button x:Name="AbortButton" Margin="6,0,0,0" ToolTip="Abort test plan execution" Click="AbortButton_OnClick" Padding="6,1">
+                <Button x:Name="AbortButton" Margin="6,0,0,0" ToolTip="Abort test plan execution" Click="OnAbortMenu" Padding="6,1">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE71A;" Foreground="DarkRed" VerticalAlignment="Center"/>
                         <TextBlock Margin="6,0,0,0" Text="Stop" VerticalAlignment="Center"/>
@@ -57,7 +83,7 @@
         </Border>
         <!-- End of Toolbar -->
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="2">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="224"/>

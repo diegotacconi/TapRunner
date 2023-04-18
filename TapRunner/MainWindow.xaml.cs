@@ -48,7 +48,8 @@ namespace TapRunner
 
             // Default values
             PlanPath = @"..\..\TapPlans\Example1.TapPlan";
-            TestPlanTextBox.DataContext = this;
+            //TestPlanTextBox.DataContext = this;
+            this.DataContext = this;
 
             PlanVerdict = Verdict.Inconclusive;
 
@@ -63,20 +64,28 @@ namespace TapRunner
             _resultsPanel = new ResultsPanel(ResultsListView);
         }
 
-        private void BrowseButton_OnClick(object sender, RoutedEventArgs e)
+        private void OnOpenMenu(object sender, RoutedEventArgs e)
         {
-            var openFileDialog = new OpenFileDialog
+            // Configure open file dialog box
+            var dialog = new OpenFileDialog
             {
                 DefaultExt = @".TapPlan",
-                Filter = @"Test Plan (.TapPlan)|*.TapPlan",
+                FileName = "",
+                Filter = @"Test Plan File (*.TapPlan)|*.TapPlan",
                 InitialDirectory = AssemblyDirectory,
-                Title = @"Open a TestPlan"
+                Title = "Open File",
             };
 
-            if (openFileDialog.ShowDialog() == true)
-                PlanPath = openFileDialog.FileName;
+            // Show open file dialog box
+            var okResult = dialog.ShowDialog();
 
-            LoadTestPlan(PlanPath);
+            // Process open file dialog box results
+            if (okResult == true)
+            {
+                // Open document
+                PlanPath = dialog.FileName;
+                LoadTestPlan(PlanPath);
+            }
         }
 
         public class PlanItem
@@ -89,24 +98,44 @@ namespace TapRunner
         {
             Plan = TestPlan.Load(path);
 
-            // Populate list
-            try
+            PlanListView.Dispatcher.BeginInvoke(new Action(() =>
             {
-                PlanListView.Items.Clear();
-            }
-            catch { }
-
-            foreach (var item in Plan.Steps)
-            {
+                // Populate list
                 try
                 {
-                    PlanListView.Items.Add(new PlanItem { Name = item.Name });
+                    PlanListView.Items.Clear();
                 }
-                catch { }
-            }
+                catch
+                {
+                    // ignored
+                }
+
+                foreach (var item in Plan.Steps)
+                {
+                    try
+                    {
+                        PlanListView.Items.Add(new PlanItem { Name = item.Name });
+                    }
+                    catch
+                    {
+                        // ignored
+                    }
+                }
+            }));
         }
 
-        private void RunButton_OnClick(object sender, RoutedEventArgs e)
+        private void OnCloseMenu(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Not Implemented", MethodBase.GetCurrentMethod()?.Name,
+                MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        private void OnExitMenu(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void OnRunMenu(object sender, RoutedEventArgs e)
         {
             _testPlanThread = TapThread.Start(() =>
             {
@@ -156,13 +185,19 @@ namespace TapRunner
             });
         }
 
-        private void AbortButton_OnClick(object sender, RoutedEventArgs e)
+        private void OnAbortMenu(object sender, RoutedEventArgs e)
         {
             if (Plan != null && Plan.IsRunning)
                 _testPlanThread.Abort();
         }
 
-        public static string AssemblyDirectory
+        private void OnAboutMenu(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Not Implemented", "About",
+                MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private static string AssemblyDirectory
         {
             get
             {
