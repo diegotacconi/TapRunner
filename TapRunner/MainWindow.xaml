@@ -18,12 +18,14 @@
         <KeyBinding Key="O" Modifiers="Control" Command="Open"/>
     </Window.InputBindings>
 
-    <DockPanel>
+    <DockPanel Background="WhiteSmoke">
         <!-- Start of Menu -->
-        <Menu DockPanel.Dock="Top" Padding="4,4,4,4">
+        <Menu DockPanel.Dock="Top" Padding="4,4,4,4" Background="Transparent">
             <MenuItem Header="_File">
                 <MenuItem Header="_Open File..." Command="Open" InputGestureText="Ctrl+O"/>
+                <!--
                 <MenuItem Header="_Close" Click="OnCloseMenu"/>
+                -->
                 <Separator />
                 <MenuItem Header="E_xit" Click="OnExitMenu" InputGestureText="Alt+F4"/>
             </MenuItem>
@@ -38,8 +40,8 @@
         <!-- End of Menu -->
 
         <!-- Start of Toolbar -->
-        <ToolBarTray DockPanel.Dock="Top">
-            <ToolBar ToolBarTray.IsLocked="True" Padding="3,3,0,1">
+        <ToolBarTray DockPanel.Dock="Top" Background="Transparent">
+            <ToolBar ToolBarTray.IsLocked="True" Padding="3,3,0,1" Background="Transparent" Loaded="ToolBar_Loaded">
 
                 <!-- Enter Test Plan file -->
                 <StackPanel Orientation="Horizontal">
@@ -73,7 +75,7 @@
         </ToolBarTray>
         <!-- End of Toolbar -->
 
-        <Grid Background="WhiteSmoke">
+        <Grid>
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="215"/>

@@ -5,6 +5,9 @@ using System.IO;
 using System.Reflection;
 using System.Threading;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+using System.Windows.Media;
 using Microsoft.Win32;
 using OpenTap;
 
@@ -23,7 +26,7 @@ namespace TapRunner
 
         public string PlanPath
         {
-            get { return _planPath; }
+            get => _planPath;
             set
             {
                 if (value != _planPath)
@@ -49,7 +52,7 @@ namespace TapRunner
             // Default values
             PlanPath = @"..\..\..\TapPlans\Example1.TapPlan";
             //TestPlanTextBox.DataContext = this;
-            this.DataContext = this;
+            DataContext = this;
 
             PlanVerdict = Verdict.Inconclusive;
 
@@ -73,7 +76,7 @@ namespace TapRunner
                 FileName = "",
                 Filter = @"Test Plan File (*.TapPlan)|*.TapPlan",
                 InitialDirectory = AssemblyDirectory,
-                Title = "Open File",
+                Title = "Open File"
             };
 
             // Show open file dialog box
@@ -168,9 +171,7 @@ namespace TapRunner
                 // If not specified, %TAP_PATH%/Settings/Bench/Default is used.
                 const string settings = @"";
                 if (!string.IsNullOrWhiteSpace(settings))
-                {
                     TestPlanRunner.SetSettingsDir(settings);
-                }
 
                 // Execute the Test Plan.
                 //_testPlanRunning = true;
@@ -226,6 +227,20 @@ namespace TapRunner
         private void OnCopyResultsPanel(object sender, RoutedEventArgs e)
         {
             Clipboard.SetText(_resultsPanel.GetContentOfSelectedItems());
+        }
+
+        // https://stackoverflow.com/questions/2765040/color-of-overflowbutton-in-wpf-toolbar
+        private void ToolBar_Loaded(object sender, RoutedEventArgs e)
+        {
+            var toolBar = sender as ToolBar;
+            if (toolBar?.Template.FindName("OverflowGrid", toolBar) is Grid overflowGrid)
+                overflowGrid.Background = Brushes.Transparent;
+
+            if (toolBar?.Template.FindName("OverflowButton", toolBar) is ToggleButton overflowButton)
+                overflowButton.Background = Brushes.Transparent;
+
+            if (toolBar?.Template.FindName("PART_ToolBarOverflowPanel", toolBar) is ToolBarOverflowPanel overflowPanel)
+                overflowPanel.Background = Brushes.Transparent;
         }
     }
 }
