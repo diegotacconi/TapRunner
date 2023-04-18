@@ -8,6 +8,7 @@
     <ApplicationIcon>App.ico</ApplicationIcon>
     <Deterministic>True</Deterministic>
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+    <OutputPath>..\bin\$(Configuration)</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
