@@ -15,4 +15,13 @@
     <PackageReference Include="OpenTAP" Version="9.16.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Resource Include="Resources\OpenFolder.png" />
+    <Resource Include="Resources\OpenFolder.svg" />
+    <Resource Include="Resources\OpenFolder.xaml" />
+    <Resource Include="Resources\Play.png" />
+    <Resource Include="Resources\Play.svg" />
+    <Resource Include="Resources\Play.xaml" />
+  </ItemGroup>
+
 </Project>

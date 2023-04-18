@@ -22,7 +22,11 @@
         <!-- Start of Menu -->
         <Menu DockPanel.Dock="Top" Padding="4,4,4,4" Background="Transparent">
             <MenuItem Header="_File">
-                <MenuItem Header="_Open File..." Command="Open" InputGestureText="Ctrl+O"/>
+                <MenuItem Header="_Open File..." Command="Open" InputGestureText="Ctrl+O">
+                    <MenuItem.Icon>
+                        <Image Source="pack://application:,,,/Resources/OpenFolder.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
                 <!--
                 <MenuItem Header="_Close" Click="OnCloseMenu"/>
                 -->
@@ -30,7 +34,11 @@
                 <MenuItem Header="E_xit" Click="OnExitMenu" InputGestureText="Alt+F4"/>
             </MenuItem>
             <MenuItem Header="Execute">
-                <MenuItem Header="Run" Click="OnRunMenu"/>
+                <MenuItem Header="Run" Click="OnRunMenu">
+                    <MenuItem.Icon>
+                        <Image Source="pack://application:,,,/Resources/Play.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
                 <MenuItem Header="Abort" Click="OnAbortMenu"/>
             </MenuItem>
             <MenuItem Header="Help">
