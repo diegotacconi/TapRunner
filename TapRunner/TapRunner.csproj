@@ -5,7 +5,7 @@
     <!-- <TargetFrameworks>net462;netcoreapp3.1;net5.0-windows;net6.0-windows;net7.0-windows</TargetFrameworks> -->
     <TargetFrameworks>net462</TargetFrameworks>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon>App.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\App.ico</ApplicationIcon>
     <Deterministic>True</Deterministic>
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
     <OutputPath>..\bin\$(Configuration)</OutputPath>
@@ -16,12 +16,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\ClearWindowContent.png" />
+    <Resource Include="Resources\ClearWindowContent.svg" />
+    <Resource Include="Resources\ClearWindowContent.xaml" />
+    <Resource Include="Resources\Copy.png" />
+    <Resource Include="Resources\Copy.svg" />
+    <Resource Include="Resources\Copy.xaml" />
     <Resource Include="Resources\OpenFolder.png" />
     <Resource Include="Resources\OpenFolder.svg" />
     <Resource Include="Resources\OpenFolder.xaml" />
     <Resource Include="Resources\Play.png" />
     <Resource Include="Resources\Play.svg" />
     <Resource Include="Resources\Play.xaml" />
+    <Resource Include="Resources\Stop.png" />
+    <Resource Include="Resources\Stop.svg" />
+    <Resource Include="Resources\Stop.xaml" />
   </ItemGroup>
 
 </Project>
