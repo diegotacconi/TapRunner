@@ -18,18 +18,11 @@
         <KeyBinding Key="O" Modifiers="Control" Command="Open"/>
     </Window.InputBindings>
 
-    <Grid Background="WhiteSmoke">
-
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
+    <DockPanel>
         <!-- Start of Menu -->
-        <Menu Grid.Row="0">
-            <MenuItem Header="File">
-                <MenuItem Header="_Open File..." Click="OnOpenMenu" InputGestureText="Ctrl+O"/>
+        <Menu DockPanel.Dock="Top" Padding="4,4,4,4">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Open File..." Command="Open" InputGestureText="Ctrl+O"/>
                 <MenuItem Header="_Close" Click="OnCloseMenu"/>
                 <Separator />
                 <MenuItem Header="E_xit" Click="OnExitMenu" InputGestureText="Alt+F4"/>
@@ -45,45 +38,43 @@
         <!-- End of Menu -->
 
         <!-- Start of Toolbar -->
-        <Border Grid.Row="1" Margin="6,6,6,0" Background="Transparent">
-            <StackPanel Orientation="Horizontal">
+        <ToolBarTray DockPanel.Dock="Top">
+            <ToolBar Padding="3,3,3,1">
 
                 <!-- Enter Test Plan file -->
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="Test Plan:"/>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBox Margin="6,0,0,0" x:Name="TestPlanTextBox" Width="390" VerticalContentAlignment="Center" Text="{Binding Path=PlanPath}" />
-                    </StackPanel>
+                    <TextBox Margin="6,2,4,2" x:Name="TestPlanTextBox" Width="390" VerticalContentAlignment="Center" Text="{Binding Path=PlanPath}" />
                 </StackPanel>
 
                 <!-- Browse Button -->
-                <Button x:Name="BrowseButton" Margin="6,0,0,0" ToolTip="Select test plan file" Click="OnOpenMenu" Padding="6,1">
+                <Button x:Name="BrowseButton" Margin="2" ToolTip="Select test plan file" Command="Open" Height="26">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE838;" VerticalAlignment="Center"/>
+                        <TextBlock Margin="2" FontFamily="Segoe MDL2 Assets" Text="&#xE838;" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Button>
+                <Separator />
 
                 <!-- Start Button -->
-                <Button x:Name="RunButton" Margin="6,0,0,0" ToolTip="Run test plan" Click="OnRunMenu" Padding="6,1" Grid.IsSharedSizeScope="True">
+                <Button x:Name="RunButton" Margin="2" ToolTip="Run test plan" Click="OnRunMenu" Height="26">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE768;" Foreground="DarkGreen" VerticalAlignment="Center"/>
-                        <TextBlock Margin="6,0,0,0" Text="Start" VerticalAlignment="Center"/>
+                        <TextBlock Margin="2" FontFamily="Segoe MDL2 Assets" Text="&#xE768;" Foreground="DarkGreen" VerticalAlignment="Center"/>
+                        <TextBlock Margin="2" Text="Start" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Button>
 
                 <!-- Abort Button -->
-                <Button x:Name="AbortButton" Margin="6,0,0,0" ToolTip="Abort test plan execution" Click="OnAbortMenu" Padding="6,1">
+                <Button x:Name="AbortButton" Margin="2" ToolTip="Abort test plan execution" Click="OnAbortMenu" Height="26">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE71A;" Foreground="DarkRed" VerticalAlignment="Center"/>
-                        <TextBlock Margin="6,0,0,0" Text="Stop" VerticalAlignment="Center"/>
+                        <TextBlock Margin="2" FontFamily="Segoe MDL2 Assets" Text="&#xE71A;" Foreground="DarkRed" VerticalAlignment="Center"/>
+                        <TextBlock Margin="2" Text="Stop" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Button>
 
-            </StackPanel>
-        </Border>
+            </ToolBar>
+        </ToolBarTray>
         <!-- End of Toolbar -->
 
-        <Grid Grid.Row="2">
+        <Grid Background="WhiteSmoke">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="224"/>
@@ -246,5 +237,5 @@
 
             </Grid>
         </Grid>
-    </Grid>
+    </DockPanel>
 </Window>
