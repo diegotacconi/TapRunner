@@ -16,21 +16,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\ClearWindowContent.png" />
-    <Resource Include="Resources\ClearWindowContent.svg" />
-    <Resource Include="Resources\ClearWindowContent.xaml" />
-    <Resource Include="Resources\Copy.png" />
-    <Resource Include="Resources\Copy.svg" />
-    <Resource Include="Resources\Copy.xaml" />
-    <Resource Include="Resources\OpenFolder.png" />
-    <Resource Include="Resources\OpenFolder.svg" />
-    <Resource Include="Resources\OpenFolder.xaml" />
-    <Resource Include="Resources\Play.png" />
-    <Resource Include="Resources\Play.svg" />
-    <Resource Include="Resources\Play.xaml" />
-    <Resource Include="Resources\Stop.png" />
-    <Resource Include="Resources\Stop.svg" />
-    <Resource Include="Resources\Stop.xaml" />
+    <Resource Include="Resources\ClearWindowContent.64.png" />
+    <Resource Include="Resources\Copy.64.png" />
+    <Resource Include="Resources\OpenFolder.64.png" />
+    <Resource Include="Resources\Play.64.png" />
+    <Resource Include="Resources\Stop.64.png" />
   </ItemGroup>
 
 </Project>

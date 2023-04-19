@@ -24,7 +24,7 @@
             <MenuItem Header="_File">
                 <MenuItem Header="_Open File..." Command="Open" InputGestureText="Ctrl+O">
                     <MenuItem.Icon>
-                        <Image Source="pack://application:,,,/Resources/OpenFolder.png" Width="16" Height="16"/>
+                        <Image Source="pack://application:,,,/Resources/OpenFolder.64.png" Width="16" Height="16"/>
                     </MenuItem.Icon>
                 </MenuItem>
                 <!--
@@ -36,12 +36,12 @@
             <MenuItem Header="Execute">
                 <MenuItem Header="Run" Click="OnRunMenu">
                     <MenuItem.Icon>
-                        <Image Source="pack://application:,,,/Resources/Play.png" Width="16" Height="16"/>
+                        <Image Source="pack://application:,,,/Resources/Play.64.png" Width="16" Height="16"/>
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="Abort" Click="OnAbortMenu">
                     <MenuItem.Icon>
-                        <Image Source="pack://application:,,,/Resources/Stop.png" Width="16" Height="16"/>
+                        <Image Source="pack://application:,,,/Resources/Stop.64.png" Width="16" Height="16"/>
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
@@ -63,7 +63,7 @@
                 <!-- Browse Button -->
                 <Button x:Name="BrowseButton" Margin="2" ToolTip="Select test plan file" Command="Open" Height="26">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="pack://application:,,,/Resources/OpenFolder.png" Width="16" Height="16"/>
+                        <Image Source="pack://application:,,,/Resources/OpenFolder.64.png" Width="16" Height="16"/>
                     </StackPanel>
                 </Button>
 
@@ -72,7 +72,7 @@
                 <!-- Start Button -->
                 <Button x:Name="RunButton" Margin="2" ToolTip="Run test plan" Click="OnRunMenu" Height="26">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="pack://application:,,,/Resources/Play.png" Width="16" Height="16"/>
+                        <Image Source="pack://application:,,,/Resources/Play.64.png" Width="16" Height="16"/>
                         <TextBlock Margin="2" Text="Start" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Button>
@@ -80,7 +80,7 @@
                 <!-- Abort Button -->
                 <Button x:Name="AbortButton" Margin="2" ToolTip="Abort test plan execution" Click="OnAbortMenu" Height="26">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="pack://application:,,,/Resources/Stop.png" Width="16" Height="16"/>
+                        <Image Source="pack://application:,,,/Resources/Stop.64.png" Width="16" Height="16"/>
                         <TextBlock Margin="2" Text="Stop" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Button>
@@ -185,12 +185,12 @@
                                         <ContextMenu x:Name = "ResultsListViewCommandMenu">
                                             <MenuItem Header="Clear Results Panel" InputGestureText="Alt+C"  Click="OnClearResultsPanel">
                                                 <MenuItem.Icon>
-                                                    <Image Source="pack://application:,,,/Resources/ClearWindowContent.png" Width="16" Height="16"/>
+                                                    <Image Source="pack://application:,,,/Resources/ClearWindowContent.64.png" Width="16" Height="16"/>
                                                 </MenuItem.Icon>
                                             </MenuItem>
                                             <MenuItem Header="Copy" InputGestureText="Ctrl+C" Click="OnCopyResultsPanel">
                                                 <MenuItem.Icon>
-                                                    <Image Source="pack://application:,,,/Resources/Copy.png" Width="16" Height="16"/>
+                                                    <Image Source="pack://application:,,,/Resources/Copy.64.png" Width="16" Height="16"/>
                                                 </MenuItem.Icon>
                                             </MenuItem>
                                         </ContextMenu>
@@ -248,12 +248,12 @@
                                         <ContextMenu x:Name = "LogListViewCommandMenu">
                                             <MenuItem Header="Clear Log Panel" InputGestureText="Alt+C"  Click="OnClearLogPanel">
                                                 <MenuItem.Icon>
-                                                    <Image Source="pack://application:,,,/Resources/ClearWindowContent.png" Width="16" Height="16"/>
+                                                    <Image Source="pack://application:,,,/Resources/ClearWindowContent.64.png" Width="16" Height="16"/>
                                                 </MenuItem.Icon>
                                             </MenuItem>
                                             <MenuItem Header="Copy" InputGestureText="Ctrl+C" Click="OnCopyLogPanel">
                                                 <MenuItem.Icon>
-                                                    <Image Source="pack://application:,,,/Resources/Copy.png" Width="16" Height="16"/>
+                                                    <Image Source="pack://application:,,,/Resources/Copy.64.png" Width="16" Height="16"/>
                                                 </MenuItem.Icon>
                                             </MenuItem>
                                         </ContextMenu>
